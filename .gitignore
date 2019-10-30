@@ -1,4 +1,6 @@
 .DS_Store
+tmp/uploads/*
+!tmp/uploads/.gitkeep
 
 # Logs
 logs
