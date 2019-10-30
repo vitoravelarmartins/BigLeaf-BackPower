@@ -7,17 +7,21 @@ import SessionController from './app/controllers/SessionController'
 import AccountController from './app/controllers/AccountController'
 import CreditCardController from './app/controllers/CreditCardController'
 import ArquivoController from './app/controllers/ArquivoController'
+import multer from 'multer'
+
+import multerConfig from './config/multer'
 
 const routes = express.Router()
 
 routes.post('/users', UserController.create)
 routes.post('/sessions', SessionController.create)
-routes.post('/arquivos', ArquivoController.create)
 
-routes.put('/arquivos/:id', ArquivoController.update)
+
+
 
 routes.use(AuthMiddleware)
-
+routes.post('/arquivos', multer(multerConfig).single("file"), ArquivoController.create)
+routes.put('/arquivos/:id', multer(multerConfig).single("file"), ArquivoController.update)
 // Rotas definidas apartir desse ponto são protegidas
 
 // Arquivos routes
