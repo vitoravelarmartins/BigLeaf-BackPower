@@ -4,6 +4,7 @@ class UserController {
   async create(req, res) {
     const { email } = req.body
     const { cpf } = req.body
+    const { dataNasc } = req.body
 
     if (await User.findOne({ email }) || await User.findOne({ cpf })) {
       return res.status(400).json({ error: 'Ja existe um usuario cadastrado com estes dados' })

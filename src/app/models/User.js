@@ -31,6 +31,10 @@ const UserSchema = moongose.Schema(
     tipoSanguineo: {
       type: String,
       required: false,
+    },
+    dataNasc: {
+      type: Date,
+      required: true,
     }
   },
   {
