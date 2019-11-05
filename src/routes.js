@@ -18,6 +18,8 @@ routes.post('/sessions', SessionController.create)
 
 
 
+routes.get('/users', UserController.list)
+routes.get('/users/:id', UserController.find)
 
 routes.use(AuthMiddleware)
 routes.post('/arquivos', multer(multerConfig).single("file"), ArquivoController.create)
