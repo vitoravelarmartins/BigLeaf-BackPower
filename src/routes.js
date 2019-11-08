@@ -8,6 +8,7 @@ import AccountController from './app/controllers/AccountController'
 import CreditCardController from './app/controllers/CreditCardController'
 import ArquivoController from './app/controllers/ArquivoController'
 import multer from 'multer'
+import HistoricoController from './app/controllers/HistoricoController'
 
 import multerConfig from './config/multer'
 
@@ -24,6 +25,9 @@ routes.get('/users/:id', UserController.find)
 routes.use(AuthMiddleware)
 routes.post('/arquivos', multer(multerConfig).single("file"), ArquivoController.create)
 routes.put('/arquivos/:id', multer(multerConfig).single("file"), ArquivoController.update)
+routes.post('/historico', HistoricoController.create)
+routes.get('/historico/:user', HistoricoController.find)
+routes.get('/historico', HistoricoController.list)
 // Rotas definidas apartir desse ponto são protegidas
 
 // Arquivos routes
