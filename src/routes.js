@@ -17,21 +17,30 @@ const routes = express.Router()
 routes.post('/users', UserController.create)
 routes.post('/sessions', SessionController.create)
 
-
-
 routes.get('/users', UserController.list)
 routes.get('/users/:id', UserController.find)
+routes.get('/arquivos/:filename', ArquivoController.find)
 
 routes.use(AuthMiddleware)
-routes.post('/arquivos', multer(multerConfig).single("file"), ArquivoController.create)
-routes.put('/arquivos/:id', multer(multerConfig).single("file"), ArquivoController.update)
+
+routes.post(
+  '/arquivos',
+  multer(multerConfig).single('file'),
+  ArquivoController.create
+)
+routes.put(
+  '/arquivos/:id',
+  multer(multerConfig).single('file'),
+  ArquivoController.update
+)
+routes.get('/arquivos', ArquivoController.list)
+
 routes.post('/historico', HistoricoController.create)
 routes.get('/historico/:user', HistoricoController.find)
 routes.get('/historico', HistoricoController.list)
 // Rotas definidas apartir desse ponto são protegidas
 
 // Arquivos routes
-
 
 // Account routes
 routes.post('/accounts', AccountController.create)
